@@ -1,6 +1,6 @@
 # Pumpfun Solana Bundler Frontend Dashboard (FIXED JITO)
 
-> **All credit goes to [TrenchyDev](https://github.com/TrenchyDev) for the original project.** I fixed the Jito bundling delay so launches are instant — no more 60s cooldown between bundles. Also added retry logic for IPFS uploads and auto-funding for sells.
+> **All credit goes to [](https://github.com/) for the original project.** I fixed the Jito bundling delay so launches are instant — no more 60s cooldown between bundles. Also added retry logic for IPFS uploads and auto-funding for sells.
 
 ---
 
@@ -14,7 +14,7 @@ Launch tokens, manage wallets, execute trades, and collect creator fees — all 
 
 > **V2 Protocol Native** — Built directly on pump.fun's V2 SDK (`@pump-fun/pump-sdk`) using Token Extensions (`TOKEN_2022_PROGRAM_ID`) and V2 program instructions. Not a patch on top of the old protocol — this is a full rewrite.
 
-**Website:** [trenchytools.lol](https://trenchytools.lol)
+**Website:** [.lol]
 
 ---
 
@@ -125,24 +125,24 @@ This starts both the frontend and backend concurrently:
 
 ```
 Funding Wallet
-    |
-    |-- 1. Generate mint keypair (random or vanity)
-    |-- 2. Create & fund dev wallet (or use imported)
-    |-- 3. Create & fund bundle wallets 0-5 (or use imported)
-    |-- 4. Create & fund holder wallets 0-10 (or use imported)
-    |-- 5. Upload metadata to pump.fun IPFS
-    |-- 6. Create Address Lookup Table (auto at 4+ bundles)
-    |
-    |-- 7. Build transactions:
-    |       TX1: Create token + dev buy
-    |       TX2-N: Bundle wallet buys (up to 4 buys per TX)
-    |       TX-last: Jito tip
-    |
-    |-- 8. Submit Jito bundle (or RPC fallback)
-    |-- 9. Confirm on-chain
-    |-- 10. Holder wallets auto-buy (with delay)
-    |
-    v
+ |
+ |-- 1. Generate mint keypair (random or vanity)
+ |-- 2. Create & fund dev wallet (or use imported)
+ |-- 3. Create & fund bundle wallets 0-5 (or use imported)
+ |-- 4. Create & fund holder wallets 0-10 (or use imported)
+ |-- 5. Upload metadata to pump.fun IPFS
+ |-- 6. Create Address Lookup Table (auto at 4+ bundles)
+ |
+ |-- 7. Build transactions:
+ | TX1: Create token + dev buy
+ | TX2-N: Bundle wallet buys (up to 4 buys per TX)
+ | TX-last: Jito tip
+ |
+ |-- 8. Submit Jito bundle (or RPC fallback)
+ |-- 9. Confirm on-chain
+ |-- 10. Holder wallets auto-buy (with delay)
+ |
+ v
 Token Live on pump.fun
 ```
 
@@ -174,55 +174,55 @@ This launcher uses the new V2 protocol via `@pump-fun/pump-sdk` natively:
 ```
 pump-launcher/
 ├── backend/
-│   ├── .env                         # Configuration (gitignored)
-│   ├── keys/                        # Wallet storage (gitignored)
-│   │   ├── wallets.json             # Auto-generated launch wallets
-│   │   └── imported-wallets.json    # User-imported wallets
-│   ├── data/                        # Runtime data (gitignored)
-│   │   ├── launches.json            # Launch history
-│   │   ├── trades.json              # Trade records
-│   │   ├── vanity-pool.json         # Generated vanity addresses
-│   │   └── uploads/                 # Token images
-│   └── src/
-│       ├── index.ts                 # Express server entry point
-│       ├── routes/
-│       │   ├── launch.ts            # Token launch endpoints + SSE
-│       │   ├── trading.ts           # Buy, sell, rapid sell, fee collection
-│       │   ├── wallets.ts           # Wallet CRUD, gather, balances, imported
-│       │   ├── upload.ts            # Image upload
-│       │   ├── ai.ts                # AI token generation (Gemini)
-│       │   ├── env.ts               # Environment variable management
-│       │   ├── live-trades.ts       # PumpPortal live trade SSE
-│       │   └── vanity.ts            # Vanity address pool
-│       ├── services/
-│       │   ├── launch-executor.ts   # Full launch orchestration
-│       │   ├── pumpfun.ts           # Pump.fun SDK wrapper (create, buy, sell)
-│       │   ├── jito.ts              # Jito bundle submission
-│       │   ├── vault.ts             # Wallet storage (generated + imported)
-│       │   ├── lut.ts               # Address Lookup Tables
-│       │   ├── solana.ts            # Connection, transfers, execution
-│       │   ├── pumpportal.ts        # Live trade WebSocket
-│       │   ├── gemini.ts            # Google Gemini AI integration
-│       │   └── vanity.ts            # Vanity address generator (workers)
-│       └── types/
-│           └── index.ts             # TypeScript interfaces
+│ ├── .env # Configuration (gitignored)
+│ ├── keys/ # Wallet storage (gitignored)
+│ │ ├── wallets.json # Auto-generated launch wallets
+│ │ └── imported-wallets.json # User-imported wallets
+│ ├── data/ # Runtime data (gitignored)
+│ │ ├── launches.json # Launch history
+│ │ ├── trades.json # Trade records
+│ │ ├── vanity-pool.json # Generated vanity addresses
+│ │ └── uploads/ # Token images
+│ └── src/
+│ ├── index.ts # Express server entry point
+│ ├── routes/
+│ │ ├── launch.ts # Token launch endpoints + SSE
+│ │ ├── trading.ts # Buy, sell, rapid sell, fee collection
+│ │ ├── wallets.ts # Wallet CRUD, gather, balances, imported
+│ │ ├── upload.ts # Image upload
+│ │ ├── ai.ts # AI token generation (Gemini)
+│ │ ├── env.ts # Environment variable management
+│ │ ├── live-trades.ts # PumpPortal live trade SSE
+│ │ └── vanity.ts # Vanity address pool
+│ ├── services/
+│ │ ├── launch-executor.ts # Full launch orchestration
+│ │ ├── pumpfun.ts # Pump.fun SDK wrapper (create, buy, sell)
+│ │ ├── jito.ts # Jito bundle submission
+│ │ ├── vault.ts # Wallet storage (generated + imported)
+│ │ ├── lut.ts # Address Lookup Tables
+│ │ ├── solana.ts # Connection, transfers, execution
+│ │ ├── pumpportal.ts # Live trade WebSocket
+│ │ ├── gemini.ts # Google Gemini AI integration
+│ │ └── vanity.ts # Vanity address generator (workers)
+│ └── types/
+│ └── index.ts # TypeScript interfaces
 ├── frontend/
-│   ├── public/image/                # Static assets (logo, etc.)
-│   └── src/
-│       ├── pages/
-│       │   ├── Launch.tsx           # Token launch form + AI generator
-│       │   ├── Trading.tsx          # Trade execution + live feed
-│       │   ├── Wallets.tsx          # Wallet management + fees + imported
-│       │   └── Settings.tsx         # Environment variable editor
-│       └── components/
-│           ├── layout/
-│           │   ├── Sidebar.tsx      # Navigation sidebar
-│           │   └── Header.tsx       # Top header bar
-│           ├── ui/                  # Reusable UI components
-│           └── ...
-├── .env.example                     # Template — copy to backend/.env
+│ ├── public/image/ # Static assets (logo, etc.)
+│ └── src/
+│ ├── pages/
+│ │ ├── Launch.tsx # Token launch form + AI generator
+│ │ ├── Trading.tsx # Trade execution + live feed
+│ │ ├── Wallets.tsx # Wallet management + fees + imported
+│ │ └── Settings.tsx # Environment variable editor
+│ └── components/
+│ ├── layout/
+│ │ ├── Sidebar.tsx # Navigation sidebar
+│ │ └── Header.tsx # Top header bar
+│ ├── ui/ # Reusable UI components
+│ └── ...
+├── .env.example # Template — copy to backend/.env
 ├── .gitignore
-├── package.json                     # Root — runs both frontend + backend
+├── package.json # Root — runs both frontend + backend
 └── FEATURE_ROADMAP.md
 ```
 
